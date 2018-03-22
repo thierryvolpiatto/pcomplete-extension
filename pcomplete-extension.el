@@ -317,10 +317,10 @@ Shell buffers.  It implements `shell-completion-execonly' for
             (pcomplete-match "^--\\([^= \t\n\f]*\\)\\'" 0))
        (pcomplete-here* pcomplete--tar-long-options-cache))
       ((pcomplete-match "^-" 0)
-       (pcomplete-opt "01234567ABCFGKLMNOPRSTUVWXZbcdfghiklmoprstuvwxz"))
+       (pcomplete-opt "01234567ABCFGJKLMNOPRSTUVWXZbcdfghijklmoprstuvwxz"))
       ((pcomplete-match "\\`-\\'" 0)
        (pcomplete-here*))))
-  (while (pcomplete-here) (pcomplete-entries)))
+  (while (pcomplete-here (pcomplete-entries))))
 
 ;; Tests
 ;; find . -name '*.el' | xargs et      =>ok
