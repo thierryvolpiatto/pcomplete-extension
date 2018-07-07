@@ -400,6 +400,7 @@ Shell buffers.  It implements `shell-completion-execonly' for
              (pcomplete-opt "dfmqsyuVabthvco"))))
     (cond (;; commands
            (or (string= prec "apt-get")
+               (string= prec "apt")
                (string-match "\\`--?" prec))
            (while (pcomplete-here* cmd-list (pcomplete-arg 'last))))
           ;; packages
@@ -415,6 +416,8 @@ Shell buffers.  It implements `shell-completion-execonly' for
                                 nil (current-buffer))
                                (mapcar (lambda (line) (car (split-string line " - ")))
                                        (split-string (buffer-string) "\n")))))))))))
+
+(defalias 'pcomplete/apt 'pcomplete/apt-get)
 
 
 (provide 'pcomplete-extension)
