@@ -431,7 +431,7 @@ Shell buffers.  It implements `shell-completion-execonly' for
 (defun pcomplete/convert ()
   (when (pcomplete-match "^-" 'last)
     (while (pcomplete-here (pcomplete-get-convert-options))))
-  (while (pcomplete-here (pcomplete-dirs) nil 'identity)))
+  (while (pcomplete-here (pcomplete-entries) nil 'identity)))
 
 (provide 'pcomplete-extension)
 
