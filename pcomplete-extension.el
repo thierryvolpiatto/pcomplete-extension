@@ -418,7 +418,21 @@ Shell buffers.  It implements `shell-completion-execonly' for
                                        (split-string (buffer-string) "\n")))))))))))
 
 (defalias 'pcomplete/apt 'pcomplete/apt-get)
+
+;;; Convert
+;;
+(defun pcomplete-get-convert-options ()
+  (with-temp-buffer
+    (call-process "convert" nil t nil "-help")
+    (goto-char (point-min))
+    (cl-loop while (re-search-forward "^ +\\(-[A-Za-z]*\\)" nil t)
+             collect (match-string 1))))
 
+(defun pcomplete/convert ()
+  (let ((prec (pcomplete-arg 'last -1)))
+    (when (pcomplete-match "^-" 'last)
+      (while (pcomplete-here (pcomplete-get-convert-options)))))
+  (while (pcomplete-here (pcomplete-dirs) nil 'identity)))
 
 (provide 'pcomplete-extension)
 
